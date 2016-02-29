@@ -2,26 +2,29 @@ package net.pladema.monitoresws.bean;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.annotation.ManagedBean;
+import javax.faces.view.ViewScoped;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import net.pladema.monitoresws.entity.Device;
 import net.pladema.monitoresws.service.DeviceService;
 
-@ManagedBean(name = "dtFilterView")
 @ViewScoped
-public class FilterViewBean extends CommonView implements Serializable {
+@ManagedBean("deviceView")
+public class DeviceViewBean extends CommonView implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4630506639933453408L;
 
-	@ManagedProperty("#{deviceService}")
+	@Autowired
 	private DeviceService deviceService;
 
 	private List<Device> filteredDevices;
@@ -49,12 +52,15 @@ public class FilterViewBean extends CommonView implements Serializable {
 	 * this.updateDeviceList(); return; }
 	 */
 	public List<String> getMacs() {
-		List<Object> findDistinctMacs = Arrays.asList(deviceService.getMacs());
-		return findDistinctMacs.stream().map(o -> o.toString()).collect(Collectors.toList());
+		return deviceService.getMacs();		
 	}
 
 	public List<String> getProtocols() {
 		return Arrays.asList(new String[] { "W", "B" });
+	}
+	
+	public String getTime(){
+		return new Date().toString();
 	}
 
 }

@@ -38,9 +38,9 @@ public class DbInitService {
 		detectorRepository.save(new Detector(-37.321531f, -59.083338f));
 		
 		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(new Date());		
-		
+		calendar.setTime(new Date());				
 		deviceRepository.save(new Device(0,calendar,"386077DB1E86",5,"android","W"));
+		deviceRepository.save(new Device(0,calendar,"54E6FCFDBC56",5,"blackberry","W"));		
 
 		// fetch all detectors
 		log.info("Detectors found with findAll():");

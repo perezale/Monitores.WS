@@ -19,7 +19,7 @@ package net.pladema.monitoresws.bean;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-@ManagedBean
+@ManagedBean(name="helloWorldBean")
 @ViewScoped
 public class HelloWorldBean {
 	public String getHello() {

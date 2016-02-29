@@ -32,10 +32,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableAutoConfiguration
 @Configuration
 @ComponentScan(basePackages={
-		"net.pladema.monitoresws.app",
+		"net.pladema.monitoresws.app",		
+		"net.pladema.monitoresws.bean",
 		"net.pladema.monitoresws.controller",
-		"net.pladema.monitoresws.service",
-		"net.pladema.monitoresws.bean"})
+		"net.pladema.monitoresws.service"})
 @EnableJpaRepositories(basePackages="net.pladema.monitoresws.repository")
 @EntityScan(basePackages="net.pladema.monitoresws.entity")
 public class App extends SpringBootServletInitializer {
