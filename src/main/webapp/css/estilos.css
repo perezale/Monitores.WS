@@ -1,0 +1,26 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+#globalSearchFilter{
+	text-align: right;
+}
+
+/* Tipografía tabla */
+tbody{
+	font-family: monospace;
+}
+
+/* Espacio final de la tabla*/ 
+#tableForm {
+	padding-bottom: 20px;
+}
+
+/* Selector dropdown tabla */
+div.ui-selectonemenu-trigger.ui-state-default.ui-corner-right{
+	width: 23px;
+}

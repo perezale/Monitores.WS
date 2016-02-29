@@ -1,27 +1,117 @@
-<f:view xmlns="http://www.w3c.org/1999/xhtml"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:ng="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:prime="http://primefaces.org/ui">
-	<h:head>
-		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<title>#{menuController.title}</title>
-		<style>
-		body {font-size:12px; }
-</style>
-	</h:head>
-	<h:body>
-		<h:form>
-			<prime:panel header="What do you see here?" >
-				<div style="height:50px">
-					This is a simple PrimeFaces 5 project running on Spring Boot 1.1.4.
-				</div>
-			</prime:panel>
-			<prime:panel header="JSF 2.2 Bean Access">
-				#{helloWorldBean.hello}
-			</prime:panel>
-		</h:form>
-	</h:body>
-</f:view>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+  <title><ui:insert name="title">Instituto Pladema</ui:insert></title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+  
+  <link rel="stylesheet" href="css/estilos.css" />
+  
+</h:head>
+
+<h:body>
+	<ui:debug hotkey="x" rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}"/>
+	
+	<div id="header">
+	    <ui:insert name="header">
+		    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		      <div class="container">
+		        <div class="navbar-header">
+		          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		          </button>
+		          <a class="navbar-brand" href="/Monitores.WS">Instituto Pladema</a>
+		        </div>
+		        <div class="collapse navbar-collapse">
+		          <ul class="nav navbar-nav">
+		            <li class="active"><a href="/Monitores.WS/">Devices</a></li>
+		            <li><a href="/Monitores.WS/frames.xhtml">Frames</a></li>
+		            <li><a href="/Monitores.WS/smartphones.xhtml">SmartphoneDetections</a></li>
+		            <li><a target="_blank" href="/Monitores.WS/services/listServices">WSDL</a></li>		            
+		          </ul>
+		        </div><!--/.nav-collapse -->
+		      </div>
+		    </div>    	
+	    	<!--  include your header file or uncomment the include below and create header.xhtml in this directory -->
+	    	<!-- <ui:include src="header.xhtml"/> -->
+	    </ui:insert>
+	</div>
+	
+	
+	<div id="container" class="container">		
+		  <ui:insert name="container">	
+		  	<h1>Monitores.WS <small>Devices</small></h1>	   
+			<div class="table-responsive">
+			<h:form prependId="false" id="tableForm">	
+                <p:dataTable var="device" value="#{dtFilterView.devices}" widgetVar="devicesTable"
+                		 rows="10" paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="10,20,50" 
+                     emptyMessage="No devices found with given criteria" filteredValue="#{dtFilterView.filteredDevices}"
+                     resizableColumns="true" >
+     
+                    <f:facet name="header">
+                        <div id="globalSearchFilter">
+                            <p:outputPanel>
+                                <h:outputText value="Buscar en todos los campos: " />
+                                <p:inputText id="globalFilter" onkeyup="PF('devicesTable').filter()" style="width:150px" placeholder="Ingrese una palabra"/>
+                            </p:outputPanel>
+                        </div>
+                    </f:facet>
+             
+                    <p:column width="130" filterBy="#{device.id_scanner}" headerText="Scanner" filterMatchMode="contains">
+                        <h:outputText value="#{device.id_scanner}" />
+                    </p:column>
+
+                    <p:column filterBy="#{device.timestamp}" headerText="Time" filterMatchMode="contains">
+                        <h:outputText value="#{dtFilterView.prettyPrintDate(device.timestamp.getTime())}" />
+                    </p:column>
+
+                    <p:column filterBy="#{device.mac}" headerText="MAC" filterMatchMode="exact">
+                        <f:facet name="filter">
+                            <p:selectOneMenu onchange="PF('devicesTable').filter()" >
+                                <f:selectItem itemLabel="Seleccionar" itemValue="#{null}" noSelectionOption="true" />
+                                <f:selectItems value="#{dtFilterView.macs}" />
+                            </p:selectOneMenu>
+                        </f:facet>
+                        <h:outputText value="#{device.mac}" />
+                    </p:column>
+
+                    <p:column width="130" filterBy="#{device.signal}" headerText="Signal" filterMatchMode="exact">
+                        <h:outputText value="#{device.signal}" />
+                    </p:column>
+
+                    <p:column width="130" filterBy="#{device.source_device_type}" headerText="Device Type" filterMatchMode="contains">
+                        <h:outputText value="#{device.source_device_type}" />
+                    </p:column>                                
+                    
+                    <p:column width="143" filterBy="#{device.protocol}" headerText="Protocol" filterMatchMode="exact">
+                        <f:facet name="filter">
+                            <p:selectOneMenu onchange="PF('devicesTable').filter()" >
+                                <f:selectItem itemLabel="Seleccionar" itemValue="#{null}" noSelectionOption="true" />
+                                <f:selectItems value="#{dtFilterView.protocols}" />
+                            </p:selectOneMenu>
+                        </f:facet>
+                        <h:outputText value="#{device.protocol}" />
+                    </p:column>
+                        
+                </p:dataTable>
+			    
+            </h:form>
+          </div>
+		    				    
+		  </ui:insert>	 
+	</div>
+
+	
+
+</h:body>
+
+</html>

@@ -23,13 +23,21 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@Configuration
-@ComponentScan(basePackages={"net.pladema.monitoresws.bean"})
 @EnableAutoConfiguration
+@Configuration
+@ComponentScan(basePackages={
+		"net.pladema.monitoresws.app",
+		"net.pladema.monitoresws.controller",
+		"net.pladema.monitoresws.service",
+		"net.pladema.monitoresws.bean"})
+@EnableJpaRepositories(basePackages="net.pladema.monitoresws.repository")
+@EntityScan(basePackages="net.pladema.monitoresws.entity")
 public class App extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
@@ -38,14 +46,14 @@ public class App extends SpringBootServletInitializer {
     
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(App.class);
+        return application.sources(new Class[]{App.class, Initializer.class});
     }
 
     @Bean
     public ServletRegistrationBean servletRegistrationBean() {
-        FacesServlet servlet = new FacesServlet();
+        FacesServlet servlet = new FacesServlet();        
         ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(servlet, "*.jsf");
-		return servletRegistrationBean;
+        return servletRegistrationBean;
     }
     
 }

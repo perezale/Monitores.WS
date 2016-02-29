@@ -8,30 +8,36 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-
-public class Device {
+public class Frame {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+
 	private int id_scanner;
 	private Calendar timestamp;
-	private String mac;
+	private String source_mac;
+	private String destination_mac;
 	private int signal;
+	private String frame_type;
 	private String source_device_type;
 	private String protocol;
+	private String ssid;
 
-	public Device() {
+	public Frame() {
 	}
 
-	public Device(int id_scanner, Calendar timestamp, String mac, int signal, String src_device_type, String protocol) {
-
+	public Frame(int id_scanner, Calendar ts, String src_mac, String dest_mac, int si, String f_type,
+			String src_device_type, String prot, String ss) {
 		this.id_scanner = id_scanner;
-		this.timestamp = timestamp;
-		this.mac = mac;
-		this.signal = signal;
+		this.timestamp = ts;
+		this.source_mac = src_mac;
+		this.destination_mac = dest_mac;
+		this.signal = si;
+		this.frame_type = f_type;
 		this.source_device_type = src_device_type;
-		this.protocol = protocol;
+		this.protocol = prot;
+		this.ssid = ss;
 	}
 
 	public long getId() {
@@ -58,12 +64,20 @@ public class Device {
 		this.timestamp = timestamp;
 	}
 
-	public String getMac() {
-		return mac;
+	public String getSource_mac() {
+		return source_mac;
 	}
 
-	public void setMac(String mac) {
-		this.mac = mac;
+	public void setSource_mac(String source_mac) {
+		this.source_mac = source_mac;
+	}
+
+	public String getDestination_mac() {
+		return destination_mac;
+	}
+
+	public void setDestination_mac(String destination_mac) {
+		this.destination_mac = destination_mac;
 	}
 
 	public int getSignal() {
@@ -72,6 +86,14 @@ public class Device {
 
 	public void setSignal(int signal) {
 		this.signal = signal;
+	}
+
+	public String getFrame_type() {
+		return frame_type;
+	}
+
+	public void setFrame_type(String frame_type) {
+		this.frame_type = frame_type;
 	}
 
 	public String getSource_device_type() {
@@ -88,6 +110,14 @@ public class Device {
 
 	public void setProtocol(String protocol) {
 		this.protocol = protocol;
+	}
+
+	public String getSsid() {
+		return ssid;
+	}
+
+	public void setSsid(String ssid) {
+		this.ssid = ssid;
 	}
 
 }
