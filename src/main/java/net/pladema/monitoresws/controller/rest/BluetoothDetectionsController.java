@@ -1,4 +1,4 @@
-package net.pladema.monitoresws.controller;
+package net.pladema.monitoresws.controller.rest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
