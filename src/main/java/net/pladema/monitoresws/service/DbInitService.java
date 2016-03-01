@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import net.pladema.monitoresws.app.App;
@@ -19,6 +20,7 @@ import net.pladema.monitoresws.repository.DetectorRepository;
 import net.pladema.monitoresws.repository.DeviceRepository;
 
 @Service
+@Profile("dev")
 public class DbInitService {
 
 	private static final Logger log = LoggerFactory.getLogger(App.class);

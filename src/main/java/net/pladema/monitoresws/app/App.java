@@ -35,7 +35,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 		"net.pladema.monitoresws.app",		
 		"net.pladema.monitoresws.bean",
 		"net.pladema.monitoresws.controller",
-		"net.pladema.monitoresws.service"})
+		"net.pladema.monitoresws.service",
+		"net.pladema.monitoresws.soap"})
 @EnableJpaRepositories(basePackages="net.pladema.monitoresws.repository")
 @EntityScan(basePackages="net.pladema.monitoresws.entity")
 public class App extends SpringBootServletInitializer {

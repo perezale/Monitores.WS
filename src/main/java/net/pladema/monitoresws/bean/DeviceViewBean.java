@@ -9,8 +9,6 @@ import javax.annotation.ManagedBean;
 import javax.faces.view.ViewScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import net.pladema.monitoresws.entity.Device;
 import net.pladema.monitoresws.service.DeviceService;

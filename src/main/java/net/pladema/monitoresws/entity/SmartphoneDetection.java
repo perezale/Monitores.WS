@@ -5,6 +5,7 @@ import java.util.Calendar;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -12,6 +13,7 @@ import org.primefaces.json.JSONArray;
 import org.primefaces.json.JSONString;
 
 @Entity
+@Table(name="smartphonedetection")
 @IdClass(SmartphoneDetectionPK.class)
 public class SmartphoneDetection implements JSONString {
 

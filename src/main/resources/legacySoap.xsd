@@ -1,0 +1,58 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://dto.monitors.com/xsd" targetNamespace="http://dto.monitors.com/xsd"
+	elementFormDefault="qualified">
+
+	<xs:complexType name="Device">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="id" type="xs:long" />
+			<xs:element minOccurs="0" name="id_scanner" type="xs:int" />
+			<xs:element minOccurs="0" name="mac" nillable="true" type="xs:string" />
+			<xs:element minOccurs="0" name="protocol" nillable="true"
+				type="xs:string" />
+			<xs:element minOccurs="0" name="signal" type="xs:int" />
+			<xs:element minOccurs="0" name="source_device_type"
+				nillable="true" type="xs:string" />
+			<xs:element minOccurs="0" name="timestamp" nillable="true"
+				type="xs:dateTime" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Frame">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="destination_mac" nillable="true"
+				type="xs:string" />
+			<xs:element minOccurs="0" name="frame_type" nillable="true"
+				type="xs:string" />
+			<xs:element minOccurs="0" name="id" type="xs:long" />
+			<xs:element minOccurs="0" name="id_scanner" type="xs:int" />
+			<xs:element minOccurs="0" name="protocol" nillable="true"
+				type="xs:string" />
+			<xs:element minOccurs="0" name="signal" type="xs:int" />
+			<xs:element minOccurs="0" name="source_device_type"
+				nillable="true" type="xs:string" />
+			<xs:element minOccurs="0" name="source_mac" nillable="true"
+				type="xs:string" />
+			<xs:element minOccurs="0" name="ssid" nillable="true"
+				type="xs:string" />
+			<xs:element minOccurs="0" name="timestamp" nillable="true"
+				type="xs:dateTime" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SmartphoneDetection">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="destination_mac" nillable="true"
+				type="xs:string" />
+			<xs:element minOccurs="0" name="lat" nillable="true" type="xs:double" />
+			<xs:element minOccurs="0" name="lon" nillable="true" type="xs:double" />
+			<xs:element minOccurs="0" name="protocol" nillable="true"
+				type="xs:string" />
+			<xs:element minOccurs="0" name="signal" type="xs:int" />
+			<xs:element minOccurs="0" name="source_mac" nillable="true"
+				type="xs:string" />
+			<xs:element minOccurs="0" name="ssid" nillable="true"
+				type="xs:string" />
+			<xs:element minOccurs="0" name="timestamp" nillable="true"
+				type="xs:dateTime" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
