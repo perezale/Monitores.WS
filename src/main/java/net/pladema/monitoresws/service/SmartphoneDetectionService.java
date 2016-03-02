@@ -14,7 +14,11 @@ public class SmartphoneDetectionService {
 	@Autowired
 	private SmartphoneDetectionRepository smartphoneDetectionRepository;
 
-	public List<SmartphoneDetection> findAll(){
+	public List<SmartphoneDetection> findAll() {
 		return smartphoneDetectionRepository.findAll();
+	}
+
+	public SmartphoneDetection save(SmartphoneDetection smartphoneDetection) {
+		return smartphoneDetectionRepository.save(smartphoneDetection);
 	}
 }

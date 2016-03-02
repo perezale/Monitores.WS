@@ -25,4 +25,8 @@ public class DeviceService {
 		Object[] findDistinctMacs = deviceRepository.findDistinctMacs();
 		return Arrays.asList(findDistinctMacs).stream().map(o -> o.toString()).collect(Collectors.toList());
 	}
+
+	public Device save(Device device) {
+		return deviceRepository.save(device);		
+	}
 }

@@ -17,4 +17,8 @@ public class FrameService {
 	public List<Frame> findAll(){
 		return frameRepository.findAll();
 	}
+
+	public Frame save(Frame frame) {
+		return frameRepository.save(frame);
+	}
 }

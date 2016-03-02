@@ -17,7 +17,7 @@ import net.pladema.monitoresws.entity.SmartphoneDetection;;
 
 public class LegacyIntegrator {
 	
-	private static ObjectFactory factory = new ObjectFactory();
+	public static ObjectFactory factory = new ObjectFactory();
 
 	
 	private static XMLGregorianCalendar createXmlGregorianCalendar(Calendar calendar){
