@@ -13,12 +13,20 @@ public class FrameService {
 
 	@Autowired
 	private FrameRepository frameRepository;
-	
-	public List<Frame> findAll(){
+
+	public List<Frame> findAll() {
 		return frameRepository.findAll();
 	}
 
 	public Frame save(Frame frame) {
 		return frameRepository.save(frame);
+	}
+
+	public List<Frame> saveMultiple(List<Frame> devices) {
+		return frameRepository.save(devices);
+	}
+
+	public void delete(List<Frame> frames) {
+		frameRepository.delete(frames);		
 	}
 }

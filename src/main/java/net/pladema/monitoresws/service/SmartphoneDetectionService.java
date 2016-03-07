@@ -21,4 +21,9 @@ public class SmartphoneDetectionService {
 	public SmartphoneDetection save(SmartphoneDetection smartphoneDetection) {
 		return smartphoneDetectionRepository.save(smartphoneDetection);
 	}
+
+	public List<SmartphoneDetection> saveMultiple(
+			List<SmartphoneDetection> detections) {		
+		return smartphoneDetectionRepository.save(detections);
+	}
 }

@@ -1,5 +1,6 @@
 package net.pladema.monitoresws.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,5 +29,18 @@ public class DeviceService {
 
 	public Device save(Device device) {
 		return deviceRepository.save(device);		
+	}
+	
+	public List<Device> saveMultiple(List<Device> devices){
+		List<Device> output = new ArrayList<Device>();
+		for(Device d : devices){
+			output.add(deviceRepository.save(d));
+			
+		}
+		return output;
+	}
+
+	public void delete(List<net.pladema.monitoresws.entity.Device> devices) {		
+		deviceRepository.delete(devices);		
 	}
 }
