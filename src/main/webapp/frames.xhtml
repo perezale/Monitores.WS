@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:body>
+    	
+    	<ui:composition template="/layout/commonLayout.xhtml">
+    	
+    		<ui:define name="content">
+    			<div id="container" class="container">		
+		  <ui:insert name="container">	
+		  	<h1>Monitores.WS <small>Frames</small></h1>	   
+			<div class="table-responsive">
+			<h:form prependId="false" id="tableForm">	
+                <p:dataTable var="frame" value="#{frameView.frames}" widgetVar="framesTable"
+                		 rows="10" paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="10,20,50" 
+                     emptyMessage="No frames found with given criteria" filteredValue="#{frameView.filteredFrames}">
+     
+                    <f:facet name="header">
+                        <div id="globalSearchFilter">
+                            <p:outputPanel>
+                                <h:outputText value="Buscar en todos los campos: " />
+                                <p:inputText id="globalFilter" onkeyup="PF('framesTable').filter()" style="width:150px" placeholder="Ingrese una palabra"/>
+                            </p:outputPanel>
+                        </div>
+                    </f:facet>
+             
+                    <p:column filterBy="#{frame.id_scanner}" headerText="Scanner" filterMatchMode="contains">
+                        <h:outputText value="#{frame.id_scanner}" />
+                    </p:column>
+
+                    <p:column filterBy="#{frame.timestamp}" headerText="Time" filterMatchMode="contains">
+                        <h:outputText value="#{frameView.prettyPrintDate(frame.timestamp.getTime())}" />
+                    </p:column>
+
+                    <p:column filterBy="#{frame.source_mac}" headerText="Source MAC" filterMatchMode="exact">
+                        <f:facet name="filter">
+                            <p:selectOneMenu onchange="PF('framesTable').filter()" >
+                                <f:selectItem itemLabel="Seleccionar" itemValue="#{null}" noSelectionOption="true" />
+                                <f:selectItems value="#{frameView.sourceMacs}" />
+                            </p:selectOneMenu>
+                        </f:facet>
+                        <h:outputText value="#{frame.source_mac}" />
+                    </p:column>
+                    
+                    <p:column filterBy="#{frame.destination_mac}" headerText="Dest MAC" filterMatchMode="exact">
+                        <f:facet name="filter">
+                            <p:selectOneMenu onchange="PF('framesTable').filter()" >
+                                <f:selectItem itemLabel="Seleccionar" itemValue="#{null}" noSelectionOption="true" />
+                                <f:selectItems value="#{frameView.destinationMacs}" />
+                            </p:selectOneMenu>
+                        </f:facet>
+                        <h:outputText value="#{frame.destination_mac}" />
+                    </p:column>
+
+                    <p:column filterBy="#{frame.signal}" headerText="Signal" filterMatchMode="exact">
+                        <h:outputText value="#{frame.signal}" />
+                    </p:column>
+                    
+                    <p:column filterBy="#{frame.frame_type}" headerText="Frame Type" filterMatchMode="exact">
+                        <f:facet name="filter">
+                            <p:selectOneMenu onchange="PF('framesTable').filter()" >
+                                <f:selectItem itemLabel="Seleccionar" itemValue="#{null}" noSelectionOption="true" />
+                                <f:selectItems value="#{frameView.frameTypes}" />
+                            </p:selectOneMenu>
+                        </f:facet>
+                        <h:outputText value="#{frame.frame_type}" />
+                    </p:column> 
+
+                    <p:column  filterBy="#{frame.source_device_type}" headerText="Device Type" filterMatchMode="contains">
+                        <h:outputText value="#{frame.source_device_type}" />
+                    </p:column>                                
+                    
+                    <p:column filterBy="#{frame.protocol}" headerText="Protocol" filterMatchMode="exact">
+                        <f:facet name="filter">
+                            <p:selectOneMenu onchange="PF('framesTable').filter()" >
+                                <f:selectItem itemLabel="Seleccionar" itemValue="#{null}" noSelectionOption="true" />
+                                <f:selectItems value="#{frameView.protocols}" />
+                            </p:selectOneMenu>
+                        </f:facet>
+                        <h:outputText value="#{frame.protocol}" />
+                    </p:column>
+                    
+                    <p:column filterBy="#{frame.ssid}" headerText="SSID" filterMatchMode="contains">
+                        <h:outputText value="#{frame.ssid}" />
+                    </p:column>  
+                                        
+                        
+                </p:dataTable>
+			    
+            </h:form>
+          </div>
+		    				    
+		  </ui:insert>	 
+	</div>
+    		</ui:define>
+    			
+			
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>

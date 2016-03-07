@@ -39,15 +39,15 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 		"net.pladema.monitoresws.soap"})
 @EnableJpaRepositories(basePackages="net.pladema.monitoresws.repository")
 @EntityScan(basePackages="net.pladema.monitoresws.entity")
-public class App extends SpringBootServletInitializer {
+public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
-        SpringApplication.run(App.class, args);
+        SpringApplication.run(Application.class, args);
     }
     
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(new Class[]{App.class, Initializer.class});
+        return application.sources(new Class[]{Application.class, Initializer.class});
     }
 
     @Bean
