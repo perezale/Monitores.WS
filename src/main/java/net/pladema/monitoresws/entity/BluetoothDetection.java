@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import net.pladema.monitoresws.util.FullDateSerializer;
 
 @Entity
-public class BluetoothDetection extends Detection {
+public class BluetoothDetection {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

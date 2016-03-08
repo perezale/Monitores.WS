@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import net.pladema.monitoresws.util.DateSerializer;
 
 @Entity
-public class VideoDetection extends Detection {
+public class VideoDetection {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

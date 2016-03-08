@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:body>
+    	
+    	<ui:composition template="/layout/commonLayout.xhtml">
+    	
+    		<ui:define name="content">
+    			<div id="container" class="container">		
+		  <ui:insert name="container">	
+		  		<h1>Monitores.WS <small>Smartphone Detections</small></h1>	   
+			<div class="table-responsive">
+			<h:form prependId="false" id="tableForm">	
+                <p:dataTable var="detection" value="#{smartphoneView.detections}" widgetVar="detectionsTable"
+                		 rows="10" paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="10,20,50" 
+                     emptyMessage="No detections found with given criteria" filteredValue="#{smartphoneView.filteredDetections}">
+     
+                    <f:facet name="header">
+                        <div id="globalSearchFilter">
+                            <p:outputPanel>
+                                <h:outputText value="Buscar en todos los campos: " />
+                                <p:inputText id="globalFilter" onkeyup="PF('detectionsTable').filter()" style="width:150px" placeholder="Ingrese una palabra"/>
+                            </p:outputPanel>
+                        </div>
+                    </f:facet>                              
+
+                    <p:column filterBy="#{detection.timestamp}" headerText="Time" filterMatchMode="contains">
+                        <h:outputText value="#{smartphoneView.prettyPrintDate(detection.timestamp.getTime())}" />
+                    </p:column>
+
+                    <p:column filterBy="#{detection.source_mac}" headerText="Source MAC" filterMatchMode="exact">
+                        <f:facet name="filter">
+                            <p:selectOneMenu onchange="PF('detectionsTable').filter()" >
+                                <f:selectItem itemLabel="Seleccionar" itemValue="#{null}" noSelectionOption="true" />
+                                <f:selectItems value="#{smartphoneView.sourceMacs}" />
+                            </p:selectOneMenu>
+                        </f:facet>
+                        <h:outputText value="#{detection.source_mac}" />
+                    </p:column>
+                    
+                    <p:column filterBy="#{detection.destination_mac}" headerText="Dest MAC" filterMatchMode="exact">
+                        <f:facet name="filter">
+                            <p:selectOneMenu onchange="PF('detectionsTable').filter()" >
+                                <f:selectItem itemLabel="Seleccionar" itemValue="#{null}" noSelectionOption="true" />
+                                <f:selectItems value="#{smartphoneView.destinationMacs}" />
+                            </p:selectOneMenu>
+                        </f:facet>
+                        <h:outputText value="#{detection.destination_mac}" />
+                    </p:column>
+
+                    <p:column filterBy="#{detection.signal}" headerText="Signal" filterMatchMode="exact">
+                        <h:outputText value="#{detection.signal}" />
+                    </p:column>
+                    
+                    
+                    <p:column filterBy="#{detection.protocol}" headerText="Protocol" filterMatchMode="exact">
+                        <f:facet name="filter">
+                            <p:selectOneMenu onchange="PF('detectionsTable').filter()" >
+                                <f:selectItem itemLabel="Seleccionar" itemValue="#{null}" noSelectionOption="true" />
+                                <f:selectItems value="#{smartphoneView.protocols}" />
+                            </p:selectOneMenu>
+                        </f:facet>
+                        <h:outputText value="#{detection.protocol}" />
+                    </p:column>
+                    
+                    <p:column filterBy="#{detection.ssid}" headerText="SSID" filterMatchMode="contains">
+                        <h:outputText value="#{detection.ssid}" />
+                    </p:column>  
+                    
+                    <p:column headerText="Lat" >
+                        <h:outputText value="#{detection.lat}" />
+                    </p:column>  
+                    
+                    <p:column headerText="Lon" >
+                        <h:outputText value="#{detection.lon}" />
+                    </p:column>  
+                                        
+                        
+                </p:dataTable>
+			    
+            </h:form>
+          </div>
+		    				    
+		  </ui:insert>	 
+	</div>
+    		</ui:define>
+    			
+			
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>

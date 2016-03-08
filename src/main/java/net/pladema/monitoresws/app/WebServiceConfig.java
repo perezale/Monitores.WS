@@ -20,14 +20,14 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 		MessageDispatcherServlet servlet = new MessageDispatcherServlet();
 		servlet.setApplicationContext(applicationContext);		
 		servlet.setTransformWsdlLocations(true);		
-		return new ServletRegistrationBean(servlet, "/ws/*");
+		return new ServletRegistrationBean(servlet, "/services/*");
 	}
 
 	@Bean(name = "WebService")
 	public MyWsdl11Definition defaultWsdl11Definition(SimpleXsdSchema legacySoapOp) {
 		MyWsdl11Definition wsdl11Definition = new MyWsdl11Definition();
 		wsdl11Definition.setPortTypeName("WebServiceHttpEndpoint");
-		wsdl11Definition.setLocationUri("/ws");
+		wsdl11Definition.setLocationUri("/services");
 		wsdl11Definition.setTargetNamespace("http://ws.monitors.com");		
 		wsdl11Definition.setSchema(legacySoapOp);		
 		wsdl11Definition.setRequestSuffix("");
