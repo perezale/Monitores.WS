@@ -9,7 +9,7 @@
 	
 		<div id="header">
 	    <ui:insert name="header">
-		    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
 		      <div class="container">
 		        <div class="navbar-header">
 		          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -25,7 +25,16 @@
 		            <li class="#{view.viewId eq '/devices.xhtml' ? 'active' : ''}"><a href="#{request.contextPath}/">Devices</a></li>
 		            <li class="#{view.viewId eq '/frames.xhtml' ? 'active' : ''}"><a href="#{request.contextPath}/frames.xhtml">Frames</a></li>
 		            <li class="#{view.viewId eq '/smartphones.xhtml' ? 'active' : ''}"><a href="#{request.contextPath}/smartphones.xhtml">SmartphoneDetections</a></li>
-		            <li><a target="_blank" href="#{request.contextPath}/services/WebService.wsdl">WSDL</a></li>		            
+		          </ul>
+		          
+		          <ul class="nav navbar-nav pull-right">
+	          		  <li class="dropdown">
+		                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Services <span class="caret"></span></a>
+		                <ul class="dropdown-menu dropdown-menu-right">
+		                  <li><a target="_blank" href="#{request.contextPath}/api/">REST API</a></li>
+		                  <li><a target="_blank" href="#{request.contextPath}/services/WebService.wsdl">SOAP (WSDL)</a></li>                  
+		                </ul>
+		              </li>		            		           
 		          </ul>
 		        </div><!--/.nav-collapse -->
 		      </div>
