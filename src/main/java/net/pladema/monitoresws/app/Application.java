@@ -31,30 +31,28 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableAutoConfiguration
 @Configuration
-@ComponentScan(basePackages={
-		"net.pladema.monitoresws.app",		
-		"net.pladema.monitoresws.bean",
-		"net.pladema.monitoresws.controller",
-		"net.pladema.monitoresws.service",
-		"net.pladema.monitoresws.soap"})
-@EnableJpaRepositories(basePackages="net.pladema.monitoresws.repository")
-@EntityScan(basePackages="net.pladema.monitoresws.entity")
+@ComponentScan(basePackages = { "net.pladema.monitoresws.app", "net.pladema.monitoresws.bean",
+		"net.pladema.monitoresws.controller", "net.pladema.monitoresws.service", "net.pladema.monitoresws.soap" })
+@EnableJpaRepositories(basePackages = "net.pladema.monitoresws.repository")
+@EntityScan(basePackages = "net.pladema.monitoresws.entity")
 public class Application extends SpringBootServletInitializer {
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
-    
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(new Class[]{Application.class, Initializer.class});
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
 
-    @Bean
-    public ServletRegistrationBean servletRegistrationBean() {
-        FacesServlet servlet = new FacesServlet();        
-        ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(servlet, "*.xhtml");
-        return servletRegistrationBean;
-    }
-    
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+
+		return application.sources(new Class[] { Application.class, Initializer.class });
+	}
+
+	@Bean
+	public ServletRegistrationBean servletRegistrationBean() {
+		FacesServlet servlet = new FacesServlet();
+		ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(servlet, "*.xhtml");
+		return servletRegistrationBean;
+	}
+
+	
 }
