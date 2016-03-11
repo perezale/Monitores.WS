@@ -1,16 +1,20 @@
 package net.pladema.monitoresws.entity;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
+import javax.persistence.Column;
 
 public class AndroidPK implements Serializable{
-	
+		
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1653666867972540813L;
-	//@Column(name = "id_vehicle")
+	private static final long serialVersionUID = 4610606377309800972L;
+	@Column(name = "id_vehicle")
 	protected String vehicleId;
-	//@Column(name = "history_date")
+	@Column(name = "history_date")
 	protected String historyDate;
 
 	public AndroidPK() {
@@ -43,4 +47,14 @@ public class AndroidPK implements Serializable{
 		AndroidPK pk = (AndroidPK) o;
 		return pk.historyDate.equals(this.historyDate) && pk.vehicleId.equals(this.vehicleId);
 	}	
+	
+	public String toString(){
+		try {
+			String timePlusId = URLEncoder.encode(this.historyDate, "utf-8");
+			timePlusId += "_"+this.vehicleId;
+			return timePlusId;
+		} catch (UnsupportedEncodingException e) {
+			return "";
+		}
+	}
 }
