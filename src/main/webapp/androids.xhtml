@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+
+	<ui:composition template="/layout/commonLayout.xhtml">
+
+		<ui:define name="content">
+			<div id="container" class="container">
+				<ui:insert name="container">
+					<h1>
+						Monitores.WS <small>Androids</small>
+					</h1>
+					<div class="table-responsive">
+						<h:form prependId="false" id="tableForm">
+							<p:dataTable var="android" value="#{androidView.model}"
+								paginator="true" rows="10" filterEvent="enter"
+								paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+								rowsPerPageTemplate="5,10,15" 
+								id="androidTable" lazy="true">								
+								<p:column headerText="Vehicle" sortBy="#{android.id.vehicleId}"
+									filterBy="#{android.id.vehicleId}">
+									<h:outputText value="#{android.id.vehicleId}" />
+								</p:column>
+								<p:column headerText="Datetime" sortBy="#{android.id.historyDate}"
+									filterBy="#{android.id.historyDate}">
+									<h:outputText value="#{android.id.historyDate}" />
+								</p:column>																
+								<p:column headerText="Lat">
+									<h:outputText value="#{android.lat}" />
+								</p:column>
+								<p:column headerText="Lon">
+									<h:outputText value="#{android.lon}" />
+								</p:column>
+								<p:column headerText="Lon">
+									<h:outputText value="#{android.lon}" />
+								</p:column>
+								<p:column headerText="Speed">
+									<h:outputText value="#{android.speed}" />
+								</p:column>
+								<p:column headerText="Bearing">
+									<h:outputText value="#{android.bearing}" />
+								</p:column>
+								<p:column headerText="Accuracy">
+									<h:outputText value="#{android.accuracy}" />
+								</p:column>
+							</p:dataTable>
+
+						</h:form>
+					</div>
+
+				</ui:insert>
+			</div>
+		</ui:define>
+
+
+	</ui:composition>
+
+</h:body>
+
+</html>
