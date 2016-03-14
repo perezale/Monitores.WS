@@ -57,18 +57,18 @@
 			<artifactId>bootstrap</artifactId>
 			<version>1.0.10</version>
 		</dependency>
-		<!-- <dependency> -->
-		<!-- <groupId>org.apache.tomcat.embed</groupId> -->
-		<!-- <artifactId>tomcat-embed-core</artifactId> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.apache.tomcat.embed</groupId> -->
-		<!-- <artifactId>tomcat-embed-logging-juli</artifactId> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.apache.tomcat.embed</groupId> -->
-		<!-- <artifactId>tomcat-embed-jasper</artifactId> -->
-		<!-- </dependency> -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-logging-juli</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
@@ -150,10 +150,10 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<artifactId>maven-war-plugin</artifactId>				
-				<configuration>					
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
 					<packagingExcludes>
-						WEB-INF/lib/tomcat-embed-*.jar						
+						WEB-INF/lib/tomcat-embed-*.jar
 					</packagingExcludes>
 				</configuration>
 			</plugin>
