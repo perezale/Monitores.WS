@@ -23,13 +23,13 @@
 								paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 								rowsPerPageTemplate="5,10,15" 
 								id="androidTable" lazy="true">								
-								<p:column headerText="Vehicle" sortBy="#{android.id.vehicleId}"
-									filterBy="#{android.id.vehicleId}">
-									<h:outputText value="#{android.id.vehicleId}" />
+								<p:column headerText="Vehicle" sortBy="#{android.vehicleId}"
+									filterBy="#{android.vehicleId}">
+									<h:outputText value="#{android.vehicleId}" />
 								</p:column>
-								<p:column headerText="Datetime" sortBy="#{android.id.historyDate}"
-									filterBy="#{android.id.historyDate}">
-									<h:outputText value="#{android.id.historyDate}" />
+								<p:column headerText="Datetime" sortBy="#{android.historyDate}"
+									filterBy="#{android.historyDate}">
+									<h:outputText value="#{android.historyDate}" />
 								</p:column>																
 								<p:column headerText="Lat">
 									<h:outputText value="#{android.lat}" />

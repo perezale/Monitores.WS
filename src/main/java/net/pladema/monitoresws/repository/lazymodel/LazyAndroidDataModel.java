@@ -5,11 +5,9 @@ import java.util.Map;
 
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
-import net.pladema.monitoresws.app.converters.AndroidPKConverter;
 import net.pladema.monitoresws.entity.Android;
 import net.pladema.monitoresws.service.AndroidService;
 
@@ -21,9 +19,6 @@ public class LazyAndroidDataModel extends LazyDataModel<Android> {
 	private static final long serialVersionUID = 1L;
 
 	private AndroidService androidService;
-	
-	@Autowired
-	private AndroidPKConverter string2androidPkConverter;
 
 	public LazyAndroidDataModel(AndroidService datasource) {
 		this.androidService = datasource;
@@ -31,7 +26,7 @@ public class LazyAndroidDataModel extends LazyDataModel<Android> {
 
 	@Override
 	public Android getRowData(String rowKey) {
-		return androidService.findOne(string2androidPkConverter.convert(rowKey));	
+		return androidService.findOne(Long.parseLong(rowKey));	
 	}
 
 	@Override

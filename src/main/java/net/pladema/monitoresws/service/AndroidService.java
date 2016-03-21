@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.google.common.collect.Lists;
 
 import net.pladema.monitoresws.entity.Android;
-import net.pladema.monitoresws.entity.AndroidPK;
 import net.pladema.monitoresws.repository.AndroidRepository;
 
 @Service
@@ -41,7 +40,7 @@ public class AndroidService {
 		androidRepository.delete(androids);
 	}
 
-	public Android findOne(AndroidPK rowKey) {
+	public Android findOne(Long rowKey) {
 		return androidRepository.findOne(rowKey);
 	}
 
@@ -58,7 +57,7 @@ public class AndroidService {
 		} else {
 			historyDate = "%" + historyDate + "%";
 		}
-		Page<Android> findAll = androidRepository.findById_vehicleIdLikeAndId_historyDateLike(vehicleId, historyDate, page);
+		Page<Android> findAll = androidRepository.findByVehicleIdLikeAndHistoryDateLike(vehicleId, historyDate, page);
 		return findAll;
 	}
 }

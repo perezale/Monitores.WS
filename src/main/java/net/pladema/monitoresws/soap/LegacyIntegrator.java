@@ -11,7 +11,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import com.monitors.dto.xsd.ObjectFactory;
 
-import net.pladema.monitoresws.entity.Device;
+import net.pladema.monitoresws.entity.Device; 
 import net.pladema.monitoresws.entity.Frame;
 import net.pladema.monitoresws.entity.SmartphoneDetection;;
 

@@ -1,16 +1,20 @@
 package net.pladema.monitoresws.entity;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "androids")
 public class Android {
 
-	@EmbeddedId
-	private AndroidPK id;
+	@Id
+	protected Long id;
+	@Column(name = "id_vehicle")
+	protected String vehicleId;
+	@Column(name = "history_date")
+	protected String historyDate;
 	@Column(name = "latitud")
 	private Double lat;
 	@Column(name = "longitud")
@@ -33,21 +37,38 @@ public class Android {
 	 */
 	public Android(String historyDate, String vehicleId, Double lat, Double lon, Double speed, Double accuracy,
 			Double bearing) {
-		super();		
+		super();
 		this.lat = lat;
 		this.lon = lon;
 		this.speed = speed;
 		this.accuracy = accuracy;
 		this.bearing = bearing;
-		this.id = new AndroidPK(vehicleId, historyDate);
+		this.vehicleId = vehicleId;
+		this.historyDate = historyDate;
 	}
 
-	public AndroidPK getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(AndroidPK id) {
+	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getVehicleId() {
+		return vehicleId;
+	}
+
+	public void setVehicleId(String vehicleId) {
+		this.vehicleId = vehicleId;
+	}
+
+	public String getHistoryDate() {
+		return historyDate;
+	}
+
+	public void setHistoryDate(String historyDate) {
+		this.historyDate = historyDate;
 	}
 
 	public Double getLat() {
