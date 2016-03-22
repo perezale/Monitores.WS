@@ -2,6 +2,8 @@ package net.pladema.monitoresws.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,6 +12,7 @@ import javax.persistence.Table;
 public class Android {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long id;
 	@Column(name = "id_vehicle")
 	protected String vehicleId;
